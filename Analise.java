@@ -33,8 +33,8 @@ O sistema deve permitir o cadastro de clientes, registo de peças entregues para
 
 - PecaModelo
     int id
-    ClienteModelo cliente   // [FK] relação: uma peça pertence a um cliente
-    String tipoDePeca             // exemplo: camisa, calça, lençol
+    ClienteModelo cliente   
+    String tipoDePeca            
     int quantidade
     String dataEntrega
     String horario
@@ -44,9 +44,9 @@ O sistema deve permitir o cadastro de clientes, registo de peças entregues para
     int id
     ClienteModelo cliente   
     PecaModelo[] pecas      
-    String data
+    String dataVenda
     String nomeFuncionario
-    float pagamento
+    float valor
     String metodoPagamento
     boolean status
 
