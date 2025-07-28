@@ -162,6 +162,16 @@ public class MenuPrincipal extends JFrame implements ActionListener
 			new PesquisarPeca();
 		else if(event.getSource() == listarPecaItem)
 			PecaFile.listarPecas();
+		else if(event.getSource() == novaVendaItem)
+			new VendaVisao(false, new VendaModelo());
+		else if(event.getSource() == editarVendaItem)
+			new EditarVenda();
+		else if(event.getSource() == eliminarVendaItem)
+			new EliminarVenda();
+		else if(event.getSource() == pesquisarVendaItem)
+			new PesquisarVenda();
+		else if(event.getSource() == listarVendaItem)
+			VendaFile.listarVendas();
 		else if(event.getSource() == nacionalidade)
 		    Tabela2.editarNovosItems("Nacionalidades.tab", "Nova Nacionalidade");
 		else if(event.getSource() == provincia)
