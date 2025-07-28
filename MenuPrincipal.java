@@ -81,7 +81,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
 		pecaMenu.add(novaPecaItem = new JMenuItem("Nova Peca", new ImageIcon("image/novo24.png")));
 		novaPecaItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
 		pecaMenu.add(editarPecaItem = new JMenuItem("Editar", new ImageIcon("image/edit24.png")));
-		pecaMenu.add(eliminarPecaItem = new JMenuItem("Eliminar", new ImageIcon("image/delete4.png")));
+		pecaMenu.add(eliminarPecaItem = new JMenuItem("Eliminar", new ImageIcon("image/delete24.png")));
 		pecaMenu.addSeparator();
 		pecaMenu.add(sairPecaItem = new JMenuItem("Sair", new ImageIcon("image/logout24.png")));
 
@@ -152,6 +152,16 @@ public class MenuPrincipal extends JFrame implements ActionListener
 			new PesquisarCliente();
 		else if(event.getSource() == listarClientesItem)
 			ClienteFile.listarClientes();
+		else if(event.getSource() == novaPecaItem)
+			new PecaVisao(false, new PecaModelo());
+		else if(event.getSource() == editarPecaItem)
+			new EditarPeca();
+		else if(event.getSource() == eliminarPecaItem)
+			new EliminarPeca();
+		else if(event.getSource() == pesquisarPecaItem)
+			new PesquisarPeca();
+		else if(event.getSource() == listarPecaItem)
+			PecaFile.listarPecas();
 		else if(event.getSource() == nacionalidade)
 		    Tabela2.editarNovosItems("Nacionalidades.tab", "Nova Nacionalidade");
 		else if(event.getSource() == provincia)

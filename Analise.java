@@ -34,7 +34,7 @@ O sistema deve permitir o cadastro de clientes, registo de peças entregues para
 - PecaModelo
     int id
     ClienteModelo cliente   // [FK] relação: uma peça pertence a um cliente
-    String tipo             // exemplo: camisa, calça, lençol
+    String tipoDePeca             // exemplo: camisa, calça, lençol
     int quantidade
     String dataEntrega
     String horario
@@ -66,7 +66,6 @@ O sistema deve permitir o cadastro de clientes, registo de peças entregues para
 - TipoPeca.tab              // camisa, calça, vestido, etc. (nova tabela auxiliar opcional)
 
 6. Listagens e Pesquisas
-
 - Listagem Geral de Clientes
     Pesquisa por Nome
     Pesquisa por Telefone 
@@ -76,8 +75,8 @@ O sistema deve permitir o cadastro de clientes, registo de peças entregues para
     Pesquisa por Horário
 
 - Listagem Geral de Vendas
+    Pesquisa por Id
     Pesquisa por Nome do Funcionário
-    Pesquisa por Valor do Pagamento
 
 7. Diversos
 7.1 - Implementação: Java Swing

@@ -2,7 +2,7 @@
 Tema: Gestão de uma Lavandaria
 Nome: António Manuel
 Número: 34370
-Ficheiro: ClienteFile.java
+Ficheiro: PecaFile.java
 Data: 28/07/2025
 --------------------------------------*/
 import javax.swing.*;
@@ -13,14 +13,14 @@ import Calendario.*;
 import javax.swing.UIManager.*;
 import java.io.*;
 
-public class ClienteFile extends ObjectsFile
+public class PecaFile extends ObjectsFile
 {
-    public ClienteFile()
+    public PecaFile()
     {
-        super("ClienteFile.dat", new ClienteModelo());
+        super("PecaFile.dat", new PecaModelo());
     }  
 
-    public void salvarDados(ClienteModelo modelo)
+    public void salvarDados(PecaModelo modelo)
     {
         try
         {
@@ -40,10 +40,9 @@ public class ClienteFile extends ObjectsFile
         }
     }
 
-    public void alterarDados(ClienteModelo modelo_novo)
+    public void alterarDados(PecaModelo modelo_novo)
 	{
-		ClienteModelo modelo_antigo = new ClienteModelo();
-		
+		PecaModelo modelo_antigo = new PecaModelo();
 		try
 		{
 			stream.seek(4);
@@ -76,10 +75,9 @@ public class ClienteFile extends ObjectsFile
 		}
 	}
 
-    public void eliminarDados(ClienteModelo modelo_novo)
+    public void eliminarDados(PecaModelo modelo_novo)
 	{
-		ClienteModelo modelo_antigo = new ClienteModelo();
-		
+		PecaModelo modelo_antigo = new PecaModelo();
 		try
 		{
 			stream.seek(4);
@@ -111,11 +109,11 @@ public class ClienteFile extends ObjectsFile
 		}
 	}
 
-    public static void listarClientes()
+    public static void listarPecas()
     {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
-        String dados = "Listagem dos Dados do Cliente:\n\n";
+        PecaFile file = new PecaFile();
+        PecaModelo modelo = new PecaModelo();
+        String dados = "Listagem dos Dados da Peca:\n\n";
 
         try
         {
@@ -143,10 +141,10 @@ public class ClienteFile extends ObjectsFile
         }  
     }
 
-    public static void pesquisarPorNome(String nomeProcurado)
+    public static int pesquisarPorQuantidade(int quantidadeProcurada)
     {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
+        PecaFile file = new PecaFile();
+        PecaModelo modelo = new PecaModelo();
         boolean estado = false;
 
         String dados = "Listagem de Dados do Ficheiro \n\n";
@@ -159,30 +157,31 @@ public class ClienteFile extends ObjectsFile
             {
                 modelo.read(file.stream);
 
-                if(modelo.getNome().equalsIgnoreCase(nomeProcurado) && modelo.getStatus() == true)
+                if(modelo.getQuantidade() == quantidadeProcurada && modelo.getStatus() == true)
                 {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     estado = true;
-                    return;
+                    return 0;
                 }
             }
             if(!estado)
             {
-               JOptionPane.showMessageDialog(null, "Erro, nome nao encontrado", 
+               JOptionPane.showMessageDialog(null, "Erro, quantiade nao encontrada", 
                 "File Not Found", JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
+                return 0;
             }
         }
         catch(Exception ex)
         {
             ex.printStackTrace();
         }
+        return quantidadeProcurada;
     }
 
-    public static String pesquisarPorTelefone(String telefoneProcurado)
+    public static String pesquisarPorHorario(String horarioProcurado)
     {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
+        PecaFile file = new PecaFile();
+        PecaModelo modelo = new PecaModelo();
         boolean estado = false;
         String dados = "Listagem de Dados do Ficheiro \n\n";
 
@@ -194,7 +193,7 @@ public class ClienteFile extends ObjectsFile
             {
                 modelo.read(file.stream);
 
-                if(modelo.getTelefone().equalsIgnoreCase(telefoneProcurado) && modelo.getStatus() == true)
+                if(modelo.getHorario().equalsIgnoreCase(horarioProcurado) && modelo.getStatus() == true)
                 {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     estado = true;
@@ -203,7 +202,7 @@ public class ClienteFile extends ObjectsFile
             }
             if(!estado)
             {
-               JOptionPane.showMessageDialog(null, "Erro, telefone nao encontrado", 
+               JOptionPane.showMessageDialog(null, "Erro, horario nao encontrado", 
                 "File Not Found", JOptionPane.ERROR_MESSAGE);
                 return null;
             }
@@ -216,10 +215,10 @@ public class ClienteFile extends ObjectsFile
     }
 
     // metodos para a edicao
-    public static ClienteModelo getPesquisaPorNome(String nomeProcurado)
+    public static PecaModelo getPesquisaPorQuantidade(int quantidadeProcurado)
     {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
+        PecaFile file = new PecaFile();
+        PecaModelo modelo = new PecaModelo();
         boolean estado = false;
 
         String dados = "Listagem de Dados do Ficheiro \n\n";
@@ -232,7 +231,7 @@ public class ClienteFile extends ObjectsFile
             {
                 modelo.read(file.stream);
 
-                if(modelo.getNome().equalsIgnoreCase(nomeProcurado) && modelo.getStatus() == true)
+                if(modelo.getQuantidade() == quantidadeProcurado && modelo.getStatus() == true)
                 {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     estado = true;
@@ -241,7 +240,7 @@ public class ClienteFile extends ObjectsFile
             }
             if(!estado)
             {
-               JOptionPane.showMessageDialog(null, "Erro, nome nao encontrado", 
+               JOptionPane.showMessageDialog(null, "Erro, quantidade nao encontrada", 
                 "File Not Found", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
@@ -253,10 +252,10 @@ public class ClienteFile extends ObjectsFile
         return null;
     }
 
-    public static ClienteModelo getPesquisaPorTelefone(String telefoneProcurado)
+    public static PecaModelo getPesquisaPorHorario(String horarioProcurado)
     {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
+        PecaFile file = new PecaFile();
+        PecaModelo modelo = new PecaModelo();
         boolean estado = false;
 
         String dados = "Listagem de Dados do Ficheiro \n\n";
@@ -269,7 +268,7 @@ public class ClienteFile extends ObjectsFile
             {
                 modelo.read(file.stream);
 
-                if(modelo.getTelefone().equalsIgnoreCase(telefoneProcurado) && modelo.getStatus() == true)
+                if(modelo.getHorario().equalsIgnoreCase(horarioProcurado) && modelo.getStatus() == true)
                 {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     estado = true;
@@ -278,7 +277,7 @@ public class ClienteFile extends ObjectsFile
             }
             if(!estado)
             {
-                JOptionPane.showMessageDialog(null, "Erro, telefone nao encontrado", 
+                JOptionPane.showMessageDialog(null, "Erro, horario nao encontrado", 
                 "File Not Found", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
@@ -288,59 +287,5 @@ public class ClienteFile extends ObjectsFile
             ex.printStackTrace();
         }
         return null;
-    }
-
-    public static StringVector getAllNames()
-    {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
-        StringVector vetor = new StringVector();
-
-        try
-        {
-            file.stream.seek(4);
-
-            for(int i = 0; i < file.getNregistos(); i++)
-            {
-                modelo.read(file.stream);
-
-                if(modelo.getStatus() == true)
-                    vetor.add(modelo.getNome());
-            }
-            
-            vetor.sort();    
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return vetor;
-    }
-
-    public static StringVector getAllTelefone()
-    {
-        ClienteFile file = new ClienteFile();
-        ClienteModelo modelo = new ClienteModelo();
-        StringVector vetor = new StringVector();
-
-        try
-        {
-            file.stream.seek(4);
-
-            for(int i = 0; i < file.getNregistos(); i++)
-            {
-                modelo.read(file.stream);
-
-                if(modelo.getStatus() == true)
-                    vetor.add(modelo.getTelefone());
-            }
-            
-            vetor.sort();    
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return vetor;
     }
 }   
