@@ -5,7 +5,6 @@ Número: 34370
 Ficheiro: Analise.java
 Data: 27/07/2025
 --------------------------------------*/
-
 /*
 1. Objetivo
 Desenvolver um sistema para gerir clientes, peças de roupa e vendas de serviços numa lavandaria. 
