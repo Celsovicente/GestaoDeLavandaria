@@ -167,7 +167,7 @@ public class VendaFile extends ObjectsFile
             dialogo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialogo.setLayout(new BorderLayout());
             dialogo.add(scroll, BorderLayout.CENTER);
-            dialogo.setSize(1000, 500); 
+            dialogo.setSize(900, 500); 
             dialogo.setLocationRelativeTo(null);
             dialogo.setVisible(true);
 
